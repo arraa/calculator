@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <form name="form">
+            <div class="display">
+                <input type="text" name="displayResult" id="myInput" placeholder="0"
+                onkeypress="return validate(event);">
+            </div>
+
+            <div class="buttons">
+                <div class="row">
+                    <input type="button" id="ac" value="AC" onclick="document.getElementById(
+                        'myInput').value = '' ">
+
+                    <input type="button" id="hapus" onclick="backspace();" >
+                    <input type="button" name="btndiv" value="/" onclick="calcNumbers(btndiv.value)">
+                </div>
+
+
+
+                <div class="row">
+                       
+                    <input type="button" name="btn7" value="7" onclick="calcNumbers(btn7.value)">
+                    <input type="button" name="btn8" value="8" onclick="calcNumbers(btn8.value)">
+                    <input type="button" name="btn9" value="9" onclick="calcNumbers(btn9.value)">
+                    <input type="button" name="btnplus" value="+" onclick="calcNumbers(btnplus.value)">
+    
+                </div>
+                <div class="row">
+                    <input type="button" name="btn4" value="4" onclick="calcNumbers(btn4.value)">
+                    <input type="button" name="btn5" value="5" onclick="calcNumbers(btn5.value)">
+                    <input type="button" name="btn6" value="6" onclick="calcNumbers(btn6.value)">
+                    <input type="button" name="btnmin" value="-" onclick="calcNumbers(btnmin.value)">
+    
+                </div>
+                <div class="row">
+                    <input type="button" name="btn1" value="1" onclick="calcNumbers(btn1.value)">
+                    <input type="button" name="btn2" value="2" onclick="calcNumbers(btn2.value)">
+                    <input type="button" name="btn3" value="3" onclick="calcNumbers(btn3.value)">
+                    <input type="button" name="btnmul" value="*" onclick="calcNumbers(btnmul.value)">
+    
+                </div>
+                <div class="row">
+                    <input type="button" name="btn00" value="00" onclick="calcNumbers(btn00.value)">
+                    <input type="button" name="btn0" value="0" onclick="calcNumbers(btn0.value)">
+                    <input type="button" name="btndot" value="." onclick="calcNumbers(btndot.value)">
+                    <input type="button" name="btnqual" value="=" 
+                        onclick="displayResult.value=eval(displayResult.value)">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        function validate(event) {
+            var numbtn = new RegExp("^[0-9-+/-=*]");
+            var key = String.fromCharCode(event.charCode ? event.which : event.charCode);
+            if(!numbtn.test(key)) {
+                event.preventDefault();
+                return false
+            }
+        }
+    </script>
+
+    <script>
+        function calcNumbers(result) {
+            form.displayResult.value=form.displayResult.value+result;
+        }
+    </script>
+
+    <script>
+        var backspace = function() {
+            var del = document.getElementById('myInput').value;
+            document.getElementById('myInput').value = del.substring(0, del.length - 1);
+        }
+    </script>
+
+</body>
+</html>
